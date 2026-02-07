@@ -10,9 +10,9 @@ Generally:
 3. Navigate to the script's directory at `src/main/resources/scripts`
 4. Rename the `script_id` directory to the ID that was set in `gradle.properties` in step 2
 
-To Test, launch the `Minecraft Client` IDEA task (or representative task in your respective IDE).
+To test, launch the `Minecraft Client` IDEA task (or representative task in your respective IDE).
 
-To Publish, launch the `gradle build` task.
+To build, launch the `gradle build` task. A distributable zip archive is created in the `build/script` directory.
 
 ## License
 
