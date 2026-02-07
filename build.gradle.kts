@@ -69,13 +69,19 @@ tasks {
 		}
 	}
 
-	build {
-		finalizedBy("buildScript")
+	assemble {
+		dependsOn("zip")
 	}
 
-	register<Zip>("buildScript") {
+	jar {
+		enabled = false
+	}
+
+	register<Zip>("zip") {
+		group = "build"
 		archiveFileName = "${project.properties["id"]}-${project.properties["version"]}.zip"
-		destinationDirectory = layout.buildDirectory.dir("script")
+		destinationDirectory = layout.buildDirectory.dir("libs")
+		from(sourceSets.main.get().output)
 		from(layout.buildDirectory.dir("resources/main/scripts/${project.properties["id"]}"))
 		finalizedBy("cleanResources")
 	}
