@@ -13,7 +13,18 @@ loom {
 	}
 }
 
+fabricApi {
+	configureDataGeneration() {
+		client = true
+	}
+}
+
 repositories {
+	maven("https://maven.fabricmc.net") {
+		content {
+			includeGroup("net.fabricmc")
+		}
+	}
 	maven("https://maven.hugeblank.dev/releases") {
 		content {
 			includeGroup("dev.hugeblank")
@@ -36,8 +47,10 @@ repositories {
 dependencies {
 	minecraft("com.mojang:minecraft:${project.properties["minecraft_version"]}")
 	implementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
+	implementation("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_api_version"]}")
 	implementation("dev.hugeblank:allium:${project.properties["allium_version"]}")
 	implementation("dev.hugeblank:bouquet:${project.properties["bouquet_version"]}")
+	implementation("me.basiqueevangelist:enhanced-reflection:${project.properties["enhanced_reflection_version"]}")
 }
 
 tasks {
