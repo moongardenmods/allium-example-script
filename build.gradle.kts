@@ -1,15 +1,9 @@
 plugins {
-	`kotlin-dsl`
 	`maven-publish`
 	id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
 }
 
 version = project.properties["version"].toString()
-group = project.properties["group"].toString()
-
-base {
-	archivesName = project.name
-}
 
 loom {
 	mods {
@@ -19,40 +13,61 @@ loom {
 	}
 }
 
-//repositories {
-//	maven("https://maven.hugeblank.dev/releases") {
-//		content {
-//			includeGroup("dev.hugeblank")
-//			includeGroup("cc.tweaked")
-//		}
-//	}
-//	maven("https://basique.top/maven/releases") {
-//		content {
-//			includeGroup("me.basiqueevangelist")
-//		}
-//	}
-//}
+repositories {
+	maven("https://maven.hugeblank.dev/releases") {
+		content {
+			includeGroup("dev.hugeblank")
+			includeGroup("cc.tweaked")
+		}
+	}
+	maven("https://maven.hugeblank.dev/snapshots") {
+		content {
+			includeGroup("dev.hugeblank")
+			includeGroup("cc.tweaked")
+		}
+	}
+	maven("https://basique.top/maven/releases") {
+		content {
+			includeGroup("me.basiqueevangelist")
+		}
+	}
+}
 
 dependencies {
 	minecraft("com.mojang:minecraft:${project.properties["minecraft_version"]}")
 	implementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
-}
-
-java {
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	implementation("dev.hugeblank:allium:${project.properties["allium_version"]}")
+	implementation("dev.hugeblank:bouquet:${project.properties["bouquet_version"]}")
 }
 
 tasks {
-
 	processResources {
 		inputs.property("version", project.version)
-		inputs.property("name", project.name)
+		inputs.property("name", project.properties["name"])
+		inputs.property("id", project.properties["id"])
 
-		filesMatching("manifest.json") {
-			expand(mutableMapOf("version" to project.version, "name" to project.name))
+
+		filesMatching("fabric.mod.json") {
+			expand(mutableMapOf("id" to project.properties["id"]))
 		}
+
+		filesMatching("scripts/*/manifest.json") {
+			expand(mutableMapOf("version" to project.version, "name" to project.properties["name"], "id" to project.properties["id"]))
+		}
+	}
+
+	build {
+		finalizedBy("buildScript")
+	}
+
+	register<Zip>("buildScript") {
+		archiveFileName = "${project.properties["id"]}-${project.properties["version"]}.zip"
+		destinationDirectory = layout.buildDirectory.dir("script")
+		from(layout.buildDirectory.dir("resources/main/scripts/${project.properties["id"]}"))
+		finalizedBy("cleanResources")
+	}
+
+	register<Delete>("cleanResources") {
+		delete(layout.buildDirectory.dir("resources"))
 	}
 }
