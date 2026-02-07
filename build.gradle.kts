@@ -80,7 +80,7 @@ tasks {
 	register<Zip>("zip") {
 		group = "build"
 		archiveFileName = "${project.properties["id"]}-${project.properties["version"]}.zip"
-		destinationDirectory = layout.buildDirectory.dir("libs")
+		destinationDirectory = layout.buildDirectory.dir("script")
 		from(sourceSets.main.get().output)
 		from(layout.buildDirectory.dir("resources/main/scripts/${project.properties["id"]}"))
 		finalizedBy("cleanResources")
