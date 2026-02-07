@@ -1,8 +1,8 @@
-# Fabric Example Mod
+# Allium Example Script
 
 ## Setup
 
-For setup instructions please see the [fabric documentation page](https://docs.fabricmc.net/develop/getting-started/setting-up) that relates to the IDE that you are using.
+For setup instructions please see the [Allium documentation page](https://moongardenmods.github.io/allium-docs/setup/get-started.html) that relates to the IDE that you are using.
 
 ## License
 
