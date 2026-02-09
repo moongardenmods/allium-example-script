@@ -11,11 +11,14 @@ loom {
 			sourceSet(sourceSets["main"])
 		}
 	}
-}
 
-fabricApi {
-	configureDataGeneration() {
-		client = true
+	runs {
+		register("genLuaSources") {
+			client()
+			vmArg("-Dcombine.enabled")
+			vmArg("-Dcombine.targets=net.minecraft.client.Minecraft;com.mojang.authlib.minecraft.client.MinecraftClient;net.fabricmc.loader.impl.launch.knot.Knot")
+			vmArg("-Dcombine.output=../docs")
+		}
 	}
 }
 
@@ -28,12 +31,14 @@ repositories {
 	maven("https://maven.hugeblank.dev/releases") {
 		content {
 			includeGroup("dev.hugeblank")
+			includeGroup("dev.moongarden")
 			includeGroup("cc.tweaked")
 		}
 	}
 	maven("https://maven.hugeblank.dev/snapshots") {
 		content {
 			includeGroup("dev.hugeblank")
+			includeGroup("dev.moongarden")
 			includeGroup("cc.tweaked")
 		}
 	}
@@ -47,10 +52,10 @@ repositories {
 dependencies {
 	minecraft("com.mojang:minecraft:${project.properties["minecraft_version"]}")
 	implementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
-	implementation("net.fabricmc.fabric-api:fabric-api:${project.properties["fabric_api_version"]}")
+	implementation("dev.moongarden:combine:${project.properties["combine_version"]}")
 	implementation("dev.hugeblank:allium:${project.properties["allium_version"]}")
 	implementation("dev.hugeblank:bouquet:${project.properties["bouquet_version"]}")
-	implementation("me.basiqueevangelist:enhanced-reflection:${project.properties["enhanced_reflection_version"]}")
+//	implementation("me.basiqueevangelist:enhanced-reflection:${project.properties["enhanced_reflection_version"]}")
 }
 
 tasks {
