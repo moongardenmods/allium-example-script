@@ -11,15 +11,6 @@ loom {
 			sourceSet(sourceSets["main"])
 		}
 	}
-
-	runs {
-		register("genLuaSources") {
-			client()
-			vmArg("-Dcombine.enabled")
-			vmArg("-Dcombine.targets=net.minecraft.client.Minecraft;com.mojang.authlib.minecraft.client.MinecraftClient;net.fabricmc.loader.impl.launch.knot.Knot")
-			vmArg("-Dcombine.output=../docs")
-		}
-	}
 }
 
 repositories {
@@ -55,7 +46,6 @@ dependencies {
 	implementation("dev.moongarden:combine:${project.properties["combine_version"]}")
 	implementation("dev.hugeblank:allium:${project.properties["allium_version"]}")
 	implementation("dev.hugeblank:bouquet:${project.properties["bouquet_version"]}")
-//	implementation("me.basiqueevangelist:enhanced-reflection:${project.properties["enhanced_reflection_version"]}")
 }
 
 tasks {
@@ -81,6 +71,25 @@ tasks {
 	jar {
 		enabled = false
 	}
+
+	register<JavaExec>("genLuaSources") {
+		group = "allium"
+
+		classpath = sourceSets["main"].runtimeClasspath
+		mainClass = "dev.moongarden.combine.Combine"
+		jvmArgs = listOf("-Dcombine.output=../docs")
+		workingDir = file("run")
+	}
+
+	// Uncomment to create task that reveals private/protected methods and fields in the generated Lua documentation
+//	register<JavaExec>("genLuaSourcesAll") {
+//		group = "allium"
+//
+//		classpath = sourceSets["main"].runtimeClasspath
+//		mainClass = "dev.moongarden.combine.Combine"
+//		jvmArgs = listOf("-Dcombine.output=../docs", "-Dcombine.ignoreAccess")
+//		workingDir = file("run")
+//	}
 
 	register<Zip>("zip") {
 		group = "build"
