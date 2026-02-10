@@ -1,5 +1,7 @@
 # Allium Example Script
 
+A fork of the [Fabric Example Mod](https://github.com/FabricMC/fabric-example-mod), redesigned to aid in Allium scripting.
+
 ## Setup
 
 For setup instructions please see the [Allium documentation page](https://moongardenmods.github.io/allium-docs/setup/get-started.html) that relates to the IDE that you are using.
