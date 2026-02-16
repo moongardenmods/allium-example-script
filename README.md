@@ -8,7 +8,7 @@ For setup instructions please see the [Allium documentation page](https://moonga
 
 Generally:
 1. Run `git submodule update --recursive` to fetch documentation for allium's globals. 
-2. Run the `gradle runGenLuaSources` task. This is for lua defintions of game sources.
+2. Run the `gradle genLuaSources` task. This is for lua defintions of game sources.
 3. Set the script ID, version, and name in the `gradle.properties`.
 4. Navigate to the script's directory at `src/main/resources/scripts`
 5. Rename the `script_id` directory to the ID that was set in `gradle.properties` in step 2

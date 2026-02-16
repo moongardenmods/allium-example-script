@@ -72,12 +72,14 @@ tasks {
 		enabled = false
 	}
 
+	var output = "-Dcombine.output=../docs"
+	var extensions = "-Dcombine.extensions=dev.hugeblank.allium.util.combine.AlliumCombineExtension"
 	register<JavaExec>("genLuaSources") {
 		group = "allium"
 
 		classpath = sourceSets["main"].runtimeClasspath
 		mainClass = "dev.moongarden.combine.Combine"
-		jvmArgs = listOf("-Dcombine.output=../docs")
+		jvmArgs = listOf(output, extensions)
 		workingDir = file("run")
 	}
 
@@ -87,7 +89,7 @@ tasks {
 //
 //		classpath = sourceSets["main"].runtimeClasspath
 //		mainClass = "dev.moongarden.combine.Combine"
-//		jvmArgs = listOf("-Dcombine.output=../docs", "-Dcombine.ignoreAccess")
+//		jvmArgs = listOf(output, extensions, "-Dcombine.ignoreAccess")
 //		workingDir = file("run")
 //	}
 
