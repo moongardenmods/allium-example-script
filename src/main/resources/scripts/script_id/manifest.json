@@ -3,8 +3,7 @@
   "version": "${version}",
   "name": "${name}",
   "entrypoints": {
-    "static": "static.lua",
-    "dynamic": "dynamic.lua",
+    "main": "main.lua",
     "mixin": "mixin.lua"
   }
 }

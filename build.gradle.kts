@@ -83,6 +83,11 @@ tasks {
 		workingDir = file("run")
 	}
 
+	register<Exec>("updateGlobals") {
+		group = "allium"
+		commandLine = listOf("git", "submodule", "update", "--recursive")
+	}
+
 	// Uncomment to create task that reveals private/protected methods and fields in the generated Lua documentation
 //	register<JavaExec>("genLuaSourcesAll") {
 //		group = "allium"
