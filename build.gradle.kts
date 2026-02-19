@@ -19,16 +19,14 @@ repositories {
 			includeGroup("net.fabricmc")
 		}
 	}
-	maven("https://maven.hugeblank.dev/releases") {
+	maven("https://maven.moongarden.dev/releases") {
 		content {
-			includeGroup("dev.hugeblank")
 			includeGroup("dev.moongarden")
 			includeGroup("cc.tweaked")
 		}
 	}
-	maven("https://maven.hugeblank.dev/snapshots") {
+	maven("https://maven.moongarden.dev/snapshots") {
 		content {
-			includeGroup("dev.hugeblank")
 			includeGroup("dev.moongarden")
 			includeGroup("cc.tweaked")
 		}
@@ -44,8 +42,8 @@ dependencies {
 	minecraft("com.mojang:minecraft:${project.properties["minecraft_version"]}")
 	implementation("net.fabricmc:fabric-loader:${project.properties["loader_version"]}")
 	implementation("dev.moongarden:combine:${project.properties["combine_version"]}")
-	implementation("dev.hugeblank:allium:${project.properties["allium_version"]}")
-	implementation("dev.hugeblank:bouquet:${project.properties["bouquet_version"]}")
+	implementation("dev.moongarden:allium:${project.properties["allium_version"]}")
+	implementation("dev.moongarden:bouquet:${project.properties["bouquet_version"]}")
 }
 
 tasks {
@@ -73,7 +71,7 @@ tasks {
 	}
 
 	var output = "-Dcombine.output=../docs"
-	var extensions = "-Dcombine.extensions=dev.hugeblank.allium.util.combine.AlliumCombineExtension"
+	var extensions = "-Dcombine.extensions=dev.moongarden.allium.util.combine.AlliumCombineExtension"
 	register<JavaExec>("genLuaSources") {
 		group = "allium"
 
