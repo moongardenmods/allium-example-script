@@ -6,7 +6,7 @@ A fork of the [Fabric Example Mod](https://github.com/FabricMC/fabric-example-mo
 
 For setup instructions please see the [Allium documentation page](https://moongardenmods.github.io/allium-docs/setup/get-started.html) that relates to the IDE that you are using.
 
-Generally:
+After building a repository from this template, and cloning:
 1. Run the `gradle updateGlobals` task. This will fetch documentation for allium's global documentation, which are also
 used in the next step.
 2. Run the `gradle genLuaSources` task. This is for lua definitions of game sources for easy tab completion.
