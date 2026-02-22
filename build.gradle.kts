@@ -97,11 +97,14 @@ tasks {
 //	}
 
 	register<Zip>("zip") {
+		dependsOn("processResources")
 		group = "build"
 		archiveFileName = "${project.properties["id"]}-${project.properties["version"]}.zip"
 		destinationDirectory = layout.buildDirectory.dir("script")
-		from(sourceSets.main.get().output)
 		from(layout.buildDirectory.dir("resources/main/scripts/${project.properties["id"]}"))
+		from("LICENSE") {
+			rename { "${it}_${project.properties["id"]}" }
+		}
 		finalizedBy("cleanResources")
 	}
 
