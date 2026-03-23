@@ -83,7 +83,7 @@ tasks {
 
 	register<Exec>("updateGlobals") {
 		group = "allium"
-		commandLine = listOf("git", "submodule", "update", "--recursive")
+		commandLine = listOf("git", "submodule", "update", "--init", "--recursive")
 	}
 
 	// Uncomment to create task that reveals private/protected methods and fields in the generated Lua documentation
